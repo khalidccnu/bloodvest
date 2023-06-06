@@ -1,8 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Nav from "./components/Nav.jsx";
 
 const Root = () => {
-  return <Outlet />;
+  return (
+    <>
+      <Nav />
+      <Outlet />
+    </>
+  );
 };
 
 export default Root;
