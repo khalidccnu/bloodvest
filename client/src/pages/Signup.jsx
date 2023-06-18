@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import axios from "axios";
 import { useFormik } from "formik";
 import DatePicker from "react-datepicker";
+import useAuth from "../hooks/useAuth.js";
 
 const validateForm = (values) => {
   const errors = {};
@@ -50,6 +53,8 @@ const validateForm = (values) => {
 };
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const { isLoading, setLoading, createUserWithEP } = useAuth();
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [isDonate, setDonate] = useState(false);
@@ -73,7 +78,19 @@ const Signup = () => {
     },
     validate: validateForm,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      createUserWithEP({ ...values, photo: null })
+        .then((_) =>
+          toast.success(
+            "Your account has been created successfully! You are being redirected, please wait..."
+          )
+        )
+        .then((_) => setTimeout((_) => navigate("/dashboard"), 3000))
+        .catch((err) => {
+          setLoading(false);
+
+          if (err.message === "Firebase: Error (auth/email-already-in-use).")
+            toast.error("Email already in use!");
+        });
     },
   });
 
@@ -402,7 +419,13 @@ const Signup = () => {
                 !isDonate || !isNewDonor ? "col-span-full" : "w-full"
               } btn btn-sm bg-cyan-600 hover:bg-transparent text-white hover:text-cyan-600 !border-cyan-600 rounded normal-case`}
             >
-              Signup
+              <span>Signup</span>
+              {isLoading ? (
+                <span
+                  className="inline-block h-4 w-4 border-2 border-current border-r-transparent rounded-full ml-1 animate-spin"
+                  role="status"
+                ></span>
+              ) : null}
             </button>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AuthProvider from "./providers/AuthProvider.jsx";
 import Root from "./Root.jsx";
 import Error from "./pages/Error.jsx";
 import Home from "./pages/Home.jsx";
@@ -29,7 +30,11 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 };
 
 export default App;
