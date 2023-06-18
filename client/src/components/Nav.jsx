@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimesCircle } from "react-icons/fa";
 
 const Nav = () => {
+  const navigate = useNavigate();
   const [hbMenu, setHbMenu] = useState(true);
   const [sm, setSM] = useState(true);
   const collapseHbMenu = useRef();
@@ -90,7 +91,10 @@ const Nav = () => {
                 )}
               </span>
             )}
-            <button className="btn btn-xs btn-outline min-w-[8rem]">
+            <button
+              className="btn btn-xs btn-outline min-w-[8rem]"
+              onClick={(_) => navigate("/login")}
+            >
               Log In
             </button>
           </div>

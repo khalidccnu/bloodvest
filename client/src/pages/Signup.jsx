@@ -22,6 +22,10 @@ const validateForm = (values) => {
   else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
     errors.email = "Invalid email address";
 
+  if (!values.password) errors.password = "Required";
+  else if (values.password.length < 8)
+    errors.password = "Must be 8 characters or up";
+
   if (!values.birthDate) errors.birthDate = "Required";
   else if (new Date().getFullYear() - values.birthDate.getFullYear() < 15)
     errors.birthDate = "Must be 15 years old";
@@ -56,6 +60,7 @@ const Signup = () => {
       lastName: "",
       phone: "",
       email: "",
+      password: "",
       birthDate: "",
       bGroup: "",
       division: "",
@@ -96,14 +101,14 @@ const Signup = () => {
     >
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
       <div className="relative container">
-        <div className="flex flex-col gap-5 max-w-lg mx-auto bg-white p-5 sm:p-10 rounded">
+        <div className="flex flex-col gap-5 max-w-sm sm:max-w-lg mx-auto bg-white p-5 sm:p-10 rounded">
           <div>
             <h3 className="font-bold text-lg text-cyan-600">Signup</h3>
             <small className="text-red-600">*All fields are required!</small>
           </div>
           <form
             onSubmit={formik.handleSubmit}
-            className="form-control grid grid-cols-2 gap-4"
+            className="form-control grid grid-cols-1 sm:grid-cols-2 gap-4"
           >
             <div className="flex flex-col gap-0.5">
               <input
@@ -171,6 +176,21 @@ const Signup = () => {
               ) : null}
             </div>
             <div className="flex flex-col gap-0.5">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                className="input input-sm input-bordered rounded w-full"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.password ? (
+                <small className="text-red-600 ml-0.5">
+                  {formik.errors.password}
+                </small>
+              ) : null}
+            </div>
+            <div className="flex flex-col gap-0.5">
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Birth Date"
@@ -218,33 +238,33 @@ const Signup = () => {
               value="Bangladesh"
               disabled={true}
             />
-            <div className="flex flex-col gap-0.5">
-              <select
-                name="division"
-                className="select select-sm select-bordered rounded w-full"
-                value={formik.values.division}
-                onChange={formik.handleChange}
-              >
-                <option value="" disabled selected>
-                  Division
-                </option>
-                {divisions.map((division, idx) => (
-                  <option
-                    key={idx}
-                    value={division.name}
-                    onClick={(_) => handleDistrict(division.name)}
-                  >
-                    {division.name}
-                  </option>
-                ))}
-              </select>
-              {formik.errors.division ? (
-                <small className="text-red-600 ml-0.5">
-                  {formik.errors.division}
-                </small>
-              ) : null}
-            </div>
             <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-0.5">
+                <select
+                  name="division"
+                  className="select select-sm select-bordered rounded w-full"
+                  value={formik.values.division}
+                  onChange={formik.handleChange}
+                >
+                  <option value="" disabled selected>
+                    Division
+                  </option>
+                  {divisions.map((division, idx) => (
+                    <option
+                      key={idx}
+                      value={division.name}
+                      onClick={(_) => handleDistrict(division.name)}
+                    >
+                      {division.name}
+                    </option>
+                  ))}
+                </select>
+                {formik.errors.division ? (
+                  <small className="text-red-600 ml-0.5">
+                    {formik.errors.division}
+                  </small>
+                ) : null}
+              </div>
               <div className="flex flex-col gap-0.5">
                 <select
                   name="district"
@@ -267,21 +287,6 @@ const Signup = () => {
                   </small>
                 ) : null}
               </div>
-              <div className="flex flex-col gap-0.5">
-                <input
-                  type="text"
-                  placeholder="Postal Code"
-                  name="postalCode"
-                  className="input input-sm input-bordered rounded w-full"
-                  value={formik.values.postalCode}
-                  onChange={formik.handleChange}
-                />
-                {formik.errors.postalCode ? (
-                  <small className="text-red-600 ml-0.5">
-                    {formik.errors.postalCode}
-                  </small>
-                ) : null}
-              </div>
             </div>
             <div className="flex flex-col gap-0.5">
               <textarea
@@ -298,7 +303,22 @@ const Signup = () => {
               ) : null}
             </div>
             <div className="flex flex-col gap-0.5">
-              <label className="flex justify-center gap-x-2 h-full label border rounded">
+              <input
+                type="text"
+                placeholder="Postal Code"
+                name="postalCode"
+                className="input input-sm input-bordered rounded w-full"
+                value={formik.values.postalCode}
+                onChange={formik.handleChange}
+              />
+              {formik.errors.postalCode ? (
+                <small className="text-red-600 ml-0.5">
+                  {formik.errors.postalCode}
+                </small>
+              ) : null}
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <label className="flex justify-center items-center input input-sm input-bordered rounded space-x-2">
                 <span className="label-text">Are you donate?</span>
                 <input
                   type="checkbox"
@@ -319,9 +339,9 @@ const Signup = () => {
               ) : null}
             </div>
             <div className={`${isDonate ? "flex" : "hidden"} flex-col gap-0.5`}>
-              <label className="flex justify-center gap-x-2 label border rounded">
+              <label className="flex justify-center items-center input input-sm input-bordered rounded space-x-2">
                 <span className="label-text">New Donor?</span>
-                <div className="flex flex-col sm:flex-row">
+                <div className="flex">
                   <div className="flex items-center">
                     <input
                       type="radio"
@@ -379,7 +399,7 @@ const Signup = () => {
             <button
               type="submit"
               className={`${
-                isDonate && isNewDonor ? "col-span-full" : "w-full h-full"
+                !isDonate || !isNewDonor ? "col-span-full" : "w-full"
               } btn btn-sm bg-cyan-600 hover:bg-transparent text-white hover:text-cyan-600 !border-cyan-600 rounded normal-case`}
             >
               Signup
