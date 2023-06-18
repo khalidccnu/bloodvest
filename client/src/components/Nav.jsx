@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaBars, FaTimesCircle } from "react-icons/fa";
+import useAuth from "../hooks/useAuth.js";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const { isLoading, user } = useAuth();
   const [hbMenu, setHbMenu] = useState(true);
   const [sm, setSM] = useState(true);
   const collapseHbMenu = useRef();
@@ -59,7 +61,7 @@ const Nav = () => {
                       "relative block " +
                       (isActive
                         ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
-                        : "hover:text-pink-600")
+                        : "hover:text-cyan-600")
                     }
                   >
                     Home
@@ -72,16 +74,31 @@ const Nav = () => {
                       "relative block " +
                       (isActive
                         ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
-                        : "hover:text-pink-600")
+                        : "hover:text-cyan-600")
                     }
                   >
                     Find Blood
                   </NavLink>
                 </li>
+                {!isLoading && user ? (
+                  <li>
+                    <NavLink
+                      to="/dashboard"
+                      className={({ isActive }) =>
+                        "relative block " +
+                        (isActive
+                          ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
+                          : "hover:text-cyan-600")
+                      }
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
+                ) : null}
               </ul>
             ) : (
               <span
-                className="ml-5 hover:text-pink-600 cursor-pointer"
+                className="sm:hidden ml-5 hover:text-cyan-600 cursor-pointer"
                 onClick={(_) => setHbMenu(!hbMenu)}
               >
                 {hbMenu ? (
@@ -91,12 +108,14 @@ const Nav = () => {
                 )}
               </span>
             )}
-            <button
-              className="btn btn-xs btn-outline min-w-[8rem]"
-              onClick={(_) => navigate("/login")}
-            >
-              Log In
-            </button>
+            {!isLoading && !user ? (
+              <button
+                className="btn btn-xs btn-outline min-w-[8rem]"
+                onClick={(_) => navigate("/login")}
+              >
+                Log In
+              </button>
+            ) : null}
           </div>
         </div>
         {sm ? (
@@ -113,7 +132,7 @@ const Nav = () => {
                     "nav-link relative inline-block pb-0.5 " +
                     (isActive
                       ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
-                      : "hover:text-pink-600")
+                      : "hover:text-cyan-600")
                   }
                 >
                   Home
@@ -126,12 +145,27 @@ const Nav = () => {
                     "nav-link relative inline-block pb-0.5 " +
                     (isActive
                       ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
-                      : "hover:text-pink-600")
+                      : "hover:text-cyan-600")
                   }
                 >
                   Find Blood
                 </NavLink>
               </li>
+              {!isLoading && user ? (
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      "nav-link relative inline-block pb-0.5 " +
+                      (isActive
+                        ? "after:content-[''] after:absolute after:right-0 after:bottom-0 after:w-full after:h-0.5 after:bg-black hover:after:w-0 after:transition-[width] after:duration-500"
+                        : "hover:text-cyan-600")
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+              ) : null}
             </ul>
           </div>
         ) : null}

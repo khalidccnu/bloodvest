@@ -20,9 +20,48 @@ const mdbClient = new MongoClient(process.env.MONGODB_URI, {
   },
 });
 
+const verifyJWT = (req, res, next) => {
+  const authorization = req.headers.authorization;
+
+  if (!authorization)
+    return res
+      .status(401)
+      .send({ error: true, message: "Unauthorized access!" });
+
+  jwt.verify(
+    authorization.split(" ")[1],
+    process.env.ACCESS_TOKEN_SECRET,
+    (err, decoded) => {
+      if (err)
+        return res
+          .status(403)
+          .send({ error: true, message: "Forbidden access!" });
+
+      req.decoded = decoded;
+      next();
+    }
+  );
+};
+
 (async (_) => {
   try {
     const users = mdbClient.db("bloodvest").collection("users");
+
+    const verifySelf = async (req, res, next) => {
+      if (req.decoded._id !== req.params.identifier)
+        return res
+          .status(403)
+          .send({ error: true, message: "Forbidden access!" });
+
+      next();
+    };
+
+    app.get("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
+      const query = { _id: req.params.identifier };
+      const result = await users.findOne(query);
+
+      res.send(result);
+    });
 
     app.post("/users", async (req, res) => {
       const user = req.body;

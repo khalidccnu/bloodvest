@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
 import { FaGoogle } from "react-icons/fa";
@@ -8,7 +8,10 @@ import bnLogin from "../assets/bn-login.png";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoading, setLoading, signInWithEP, signInWithGoogle } = useAuth();
+  const fromURL = location.state?.fromURL.pathname;
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -23,7 +26,7 @@ const Login = () => {
       }
 
       signInWithEP(email, password)
-        .then((_) => navigate("/dashboard"))
+        .then((_) => navigate(fromURL || "/dashboard"))
         .catch((err) => {
           setLoading(false);
 
@@ -37,9 +40,16 @@ const Login = () => {
 
   const handleLoginWithGoogle = (_) => {
     signInWithGoogle()
-      .then((_) => navigate("/dashboard"))
+      .then((_) => navigate(fromURL || "/dashboard"))
       .catch((_) => setLoading(false));
   };
+
+  useEffect((_) => {
+    if (fromURL)
+      toast.error(
+        "Only registered user can access this page. Please, login first!"
+      );
+  }, []);
 
   return (
     <section className="pt-28 pb-10">

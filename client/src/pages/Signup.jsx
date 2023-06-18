@@ -59,6 +59,7 @@ const Signup = () => {
   const [districts, setDistricts] = useState([]);
   const [isDonate, setDonate] = useState(false);
   const [isNewDonor, setNewDonor] = useState(true);
+
   const formik = useFormik({
     initialValues: {
       firstName: "",
