@@ -1,0 +1,10 @@
+[
+  { "name": "Dhaka", "country": "bd" },
+  { "name": "Rajshahi", "country": "bd" },
+  { "name": "Chittagong", "country": "bd" },
+  { "name": "Khulna", "country": "bd" },
+  { "name": "Barisal", "country": "bd" },
+  { "name": "Sylhet", "country": "bd" },
+  { "name": "Rangpur", "country": "bd" },
+  { "name": "Mymensingh", "country": "bd" }
+]

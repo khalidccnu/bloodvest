@@ -1,0 +1,450 @@
+[
+  {
+    "name": "Dhaka",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.81093025",
+    "longitude": "90.36541748"
+  },
+  {
+    "name": "Faridpur",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.59419060",
+    "longitude": "89.82147217"
+  },
+  {
+    "name": "Gazipur",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "24.20689011",
+    "longitude": "90.47241211"
+  },
+  {
+    "name": "Gopalganj",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.16666985",
+    "longitude": "89.91667175"
+  },
+  {
+    "name": "Kishoregonj",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "24.41666985",
+    "longitude": "90.94999695"
+  },
+  {
+    "name": "Madaripur",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.25000000",
+    "longitude": "90.19999695"
+  },
+  {
+    "name": "Manikganj",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.86667061",
+    "longitude": "89.94999695"
+  },
+  {
+    "name": "Munshiganj",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.54999924",
+    "longitude": "90.36666870"
+  },
+  {
+    "name": "Narayanganj",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.75000000",
+    "longitude": "90.58332825"
+  },
+  {
+    "name": "Narsingdi",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "24.00000000",
+    "longitude": "90.83332825"
+  },
+  {
+    "name": "Rajbari",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.66666985",
+    "longitude": "89.55000305"
+  },
+  {
+    "name": "Shariatpur",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "23.25000000",
+    "longitude": "90.36666870"
+  },
+  {
+    "name": "Tangail",
+    "division": "Dhaka",
+    "country": "bd",
+    "latitude": "24.33852959",
+    "longitude": "89.98667145"
+  },
+  {
+    "name": "Bogra",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.78333092",
+    "longitude": "89.34999847"
+  },
+  {
+    "name": "Chapai Nababganj",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.68333054",
+    "longitude": "88.25000000"
+  },
+  {
+    "name": "Joypurhat",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "25.08333015",
+    "longitude": "89.09999847"
+  },
+  {
+    "name": "Naogaon",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.81180000",
+    "longitude": "88.94657135"
+  },
+  {
+    "name": "Natore",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.35000038",
+    "longitude": "89.08332825"
+  },
+  {
+    "name": "Pabna",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.00633049",
+    "longitude": "89.33532715"
+  },
+  {
+    "name": "Rajshahi",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.36961937",
+    "longitude": "88.60748291"
+  },
+  {
+    "name": "Sirajganj",
+    "division": "Rajshahi",
+    "country": "bd",
+    "latitude": "24.33333015",
+    "longitude": "89.61666870"
+  },
+  {
+    "name": "Bandarban",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.00000000",
+    "longitude": "92.33332825"
+  },
+  {
+    "name": "Brahmanbaria",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "23.98332977",
+    "longitude": "91.16667175"
+  },
+  {
+    "name": "Chandpur",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "23.25000000",
+    "longitude": "90.83332825"
+  },
+  {
+    "name": "Chittagong",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.48749924",
+    "longitude": "91.96333313"
+  },
+  {
+    "name": "Comilla",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "23.44169998",
+    "longitude": "91.00987244"
+  },
+  {
+    "name": "Cox's Bazar",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "21.58389091",
+    "longitude": "92.01528168"
+  },
+  {
+    "name": "Feni",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.96666908",
+    "longitude": "91.31667328"
+  },
+  {
+    "name": "Khagrachhari",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "23.16666985",
+    "longitude": "91.90000153"
+  },
+  {
+    "name": "Lakshmipur",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.91666985",
+    "longitude": "90.83332825"
+  },
+  {
+    "name": "Noakhali",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.75000000",
+    "longitude": "91.16667175"
+  },
+  {
+    "name": "Rangamati",
+    "division": "Chittagong",
+    "country": "bd",
+    "latitude": "22.63332939",
+    "longitude": "92.19999695"
+  },
+  {
+    "name": "Bagerhat",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "22.39999962",
+    "longitude": "89.75000000"
+  },
+  {
+    "name": "Chuadanga",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.63332939",
+    "longitude": "88.84999847"
+  },
+  {
+    "name": "Jessore",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.08333015",
+    "longitude": "89.16667175"
+  },
+  {
+    "name": "Jhenaidah",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.50000000",
+    "longitude": "89.16667175"
+  },
+  {
+    "name": "Khulna",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "22.50000000",
+    "longitude": "89.33332825"
+  },
+  {
+    "name": "Kushtia",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.83333015",
+    "longitude": "88.91667175"
+  },
+  {
+    "name": "Magura",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.43333054",
+    "longitude": "89.43332672"
+  },
+  {
+    "name": "Meherpur",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.75000000",
+    "longitude": "88.69999695"
+  },
+  {
+    "name": "Narail",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "23.13332939",
+    "longitude": "89.59999847"
+  },
+  {
+    "name": "Satkhira",
+    "division": "Khulna",
+    "country": "bd",
+    "latitude": "22.35000038",
+    "longitude": "89.15000153"
+  },
+  {
+    "name": "Barguna",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.13332939",
+    "longitude": "90.13333130"
+  },
+  {
+    "name": "Barisal",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.79999924",
+    "longitude": "90.50000000"
+  },
+  {
+    "name": "Bhola",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.36667061",
+    "longitude": "90.81667328"
+  },
+  {
+    "name": "Jhalokati",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.60000038",
+    "longitude": "90.19999695"
+  },
+  {
+    "name": "Patuakhali",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.33333015",
+    "longitude": "90.33332825"
+  },
+  {
+    "name": "Pirojpur",
+    "division": "Barisal",
+    "country": "bd",
+    "latitude": "22.53671074",
+    "longitude": "90.00032806"
+  },
+  {
+    "name": "Habiganj",
+    "division": "Sylhet",
+    "country": "bd",
+    "latitude": "24.43333054",
+    "longitude": "91.41667175"
+  },
+  {
+    "name": "Maulvibazar",
+    "division": "Sylhet",
+    "country": "bd",
+    "latitude": "24.50000000",
+    "longitude": "91.83332825"
+  },
+  {
+    "name": "Sunamganj",
+    "division": "Sylhet",
+    "country": "bd",
+    "latitude": "24.86667061",
+    "longitude": "91.41667175"
+  },
+  {
+    "name": "Sylhet",
+    "division": "Sylhet",
+    "country": "bd",
+    "latitude": "24.91666985",
+    "longitude": "91.76667023"
+  },
+  {
+    "name": "Dinajpur",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.61667061",
+    "longitude": "88.75000000"
+  },
+  {
+    "name": "Gaibandha",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.25000000",
+    "longitude": "89.50000000"
+  },
+  {
+    "name": "Kurigram",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.75000000",
+    "longitude": "89.66667175"
+  },
+  {
+    "name": "Lalmonirhat",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "26.00000000",
+    "longitude": "89.25000000"
+  },
+  {
+    "name": "Nilphamari",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.96666908",
+    "longitude": "88.94999695"
+  },
+  {
+    "name": "Panchagarh",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "26.33333015",
+    "longitude": "88.56667328"
+  },
+  {
+    "name": "Rangpur",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.73332977",
+    "longitude": "89.25000000"
+  },
+  {
+    "name": "Thakurgaon",
+    "division": "Rangpur",
+    "country": "bd",
+    "latitude": "25.96666908",
+    "longitude": "88.33332825"
+  },
+  {
+    "name": "Jamalpur",
+    "division": "Mymensingh",
+    "country": "bd",
+    "latitude": "25.00000000",
+    "longitude": "89.83332825"
+  },
+  {
+    "name": "Mymensingh",
+    "division": "Mymensingh",
+    "country": "bd",
+    "latitude": "24.75000000",
+    "longitude": "90.40000153"
+  },
+  {
+    "name": "Netrakona",
+    "division": "Mymensingh",
+    "country": "bd",
+    "latitude": "24.86667061",
+    "longitude": "90.86666870"
+  },
+  {
+    "name": "Sherpur",
+    "division": "Mymensingh",
+    "country": "bd",
+    "latitude": "25.08333015",
+    "longitude": "90.08332825"
+  }
+]
