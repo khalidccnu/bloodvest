@@ -1,8 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 
 const HomeSlider = () => {
+  const navigate = useNavigate();
+
   return (
     <section>
       <Swiper
@@ -24,7 +27,10 @@ const HomeSlider = () => {
                 <h1 className="text-red-600 font-bold text-2xl sm:text-3xl md:text-4xl">
                   Give the gift of life to others. <br /> Donate blood!
                 </h1>
-                <button className="btn btn-xs sm:btn-sm min-w-[8rem]">
+                <button
+                  className="btn btn-xs sm:btn-sm min-w-[8rem]"
+                  onClick={(_) => navigate("signup")}
+                >
                   Sign Up
                 </button>
               </div>
@@ -56,7 +62,10 @@ const HomeSlider = () => {
                 <h1 className="text-red-600 font-bold text-2xl sm:text-3xl md:text-4xl">
                   When you give blood, you’re more than just a donor.
                 </h1>
-                <button className="btn btn-xs sm:btn-sm min-w-[8rem]">
+                <button
+                  className="btn btn-xs sm:btn-sm min-w-[8rem]"
+                  onClick={(_) => navigate("signup")}
+                >
                   Join Us
                 </button>
               </div>

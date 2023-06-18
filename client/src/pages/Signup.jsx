@@ -98,7 +98,7 @@ const Signup = () => {
       <div className="relative container">
         <div className="flex flex-col gap-5 max-w-lg mx-auto bg-white p-5 sm:p-10 rounded">
           <div>
-            <h3 className="font-bold text-lg">Signup</h3>
+            <h3 className="font-bold text-lg text-cyan-600">Signup</h3>
             <small className="text-red-600">*All fields are required!</small>
           </div>
           <form
@@ -380,7 +380,7 @@ const Signup = () => {
               type="submit"
               className={`${
                 isDonate && isNewDonor ? "col-span-full" : "w-full h-full"
-              } btn btn-sm rounded`}
+              } btn btn-sm bg-cyan-600 hover:bg-transparent text-white hover:text-cyan-600 !border-cyan-600 rounded normal-case`}
             >
               Signup
             </button>
