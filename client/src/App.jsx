@@ -14,6 +14,7 @@ import Overview from "./pages/Overview.jsx";
 import Profile from "./pages/Profile.jsx";
 import Address from "./pages/Address.jsx";
 import Donate from "./pages/Donate.jsx";
+import ManageUsers from "./pages/ManageUsers.jsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -69,6 +70,10 @@ const App = () => {
             {
               path: "donate",
               element: <Donate />,
+            },
+            {
+              path: "manage-users",
+              element: <ManageUsers />,
             },
           ],
         },

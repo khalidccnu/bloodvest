@@ -7,6 +7,7 @@ import {
   FaLocationArrow,
   FaSignOutAlt,
   FaUser,
+  FaUsers,
 } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import useAuth from "../hooks/useAuth.js";
@@ -17,7 +18,7 @@ const Dashboard = () => {
   const { logOut } = useAuth();
   const [, userInfo] = useUserInfo();
   const [hbMenu, setHbMenu] = useState(true);
-  const { firstName, photo } = userInfo ?? {};
+  const { firstName, photo, isAdmin } = userInfo ?? {};
 
   const handleLogout = (_) =>
     logOut()
@@ -111,6 +112,22 @@ const Dashboard = () => {
                   <span>Donate</span>
                 </NavLink>
               </li>
+              {isAdmin ? (
+                <li>
+                  <NavLink
+                    to="manage-users"
+                    className={({ isActive }) =>
+                      "flex px-2 py-1 leading-5 gap-1 rounded transition-colors duration-500 " +
+                      (isActive
+                        ? "bg-cyan-600 text-white"
+                        : "hover:bg-cyan-600 hover:text-white")
+                    }
+                  >
+                    <FaUsers />
+                    <span>Manage Users</span>
+                  </NavLink>
+                </li>
+              ) : null}
               <li>
                 <span
                   className="flex px-2 py-1 leading-5 gap-1 rounded hover:bg-cyan-600 hover:text-white cursor-pointer transition-colors duration-500"

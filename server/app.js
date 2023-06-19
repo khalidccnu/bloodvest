@@ -56,6 +56,18 @@ const verifyJWT = (req, res, next) => {
       next();
     };
 
+    const verifyAdmin = async (req, res, next) => {
+      const query = { _id: req.decoded._id };
+      const result = await users.findOne(query);
+
+      if (!result.isAdmin)
+        return res
+          .status(403)
+          .send({ error: true, message: "Forbidden access!" });
+
+      next();
+    };
+
     app.get("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
       const query = { _id: req.params.identifier };
       const result = await users.findOne(query);
@@ -63,12 +75,45 @@ const verifyJWT = (req, res, next) => {
       res.send(result);
     });
 
+    app.get(
+      "/admin/:identifier/users",
+      verifyJWT,
+      verifyAdmin,
+      async (req, res) => {
+        let skip = 0,
+          limit = 0;
+
+        if (req.query.page && req.query.limit) {
+          let page = req.query.page;
+          limit = +req.query.limit;
+          skip = (page - 1) * limit;
+        }
+
+        const cursor = users.find().skip(skip).limit(limit);
+        const result = await cursor.toArray();
+
+        res.send(result);
+      }
+    );
+
     app.put("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
       const query = { _id: req.params.identifier };
       const result = await users.updateOne(query, { $set: req.body });
 
       res.send(result);
     });
+
+    app.put(
+      "/admin/:identifier/users/:id",
+      verifyJWT,
+      verifyAdmin,
+      async (req, res) => {
+        const query = { _id: req.params.id };
+        const result = await users.updateOne(query, { $set: req.body });
+
+        res.send(result);
+      }
+    );
 
     app.post("/users", async (req, res) => {
       const user = req.body;
