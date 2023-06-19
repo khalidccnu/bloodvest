@@ -13,6 +13,7 @@ import DashboardRoot from "./pages/DashboardRoot.jsx";
 import Overview from "./pages/Overview.jsx";
 import Profile from "./pages/Profile.jsx";
 import Address from "./pages/Address.jsx";
+import Donate from "./pages/Donate.jsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const App = () => {
             {
               path: "address",
               element: <Address />,
+            },
+            {
+              path: "donate",
+              element: <Donate />,
             },
           ],
         },

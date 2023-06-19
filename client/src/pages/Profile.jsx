@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
-import DatePicker from "react-datepicker";
 import { FaCheckCircle, FaEdit } from "react-icons/fa";
 import useUserInfo from "../hooks/useUserInfo.js";
 import useAxiosIns from "../hooks/useAxiosIns.js";
@@ -11,19 +10,18 @@ const Profile = () => {
   const [isViewMode, setViewMode] = useState(true);
   const axiosIns = useAxiosIns();
   const [, userInfo, setUserInfoRefetch] = useUserInfo();
-  let { _id: id, firstName, lastName, phone, birthDate } = userInfo ?? {};
+  let { _id: id, firstName, lastName, phone } = userInfo ?? {};
 
   const formik = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
       phone: "",
-      birthDate: "",
     },
     onSubmit: (values) => {
-      const { firstName, lastName, phone, birthDate } = values;
+      const { firstName, lastName, phone } = values;
 
-      if (!firstName || !lastName || !phone || !birthDate) {
+      if (!firstName || !lastName || !phone) {
         toast.error("All fields are required!");
         return false;
       } else if (firstName.length > 15) {
@@ -37,9 +35,6 @@ const Profile = () => {
         return false;
       } else if (phone.length !== 10) {
         toast.error("Phone must be 10 numbers!");
-        return false;
-      } else if (new Date().getFullYear() - birthDate.getFullYear() < 15) {
-        toast.error("Age must be 15 years old!");
         return false;
       }
 
@@ -63,16 +58,12 @@ const Profile = () => {
   useEffect(
     (_) => {
       if (userInfo) {
-        if (phone) {
-          phone = phone.replace("+880", "");
-          birthDate = new Date(birthDate);
-        }
+        if (phone) phone = phone.replace("+880", "");
 
         formik.setValues({
           firstName,
           lastName,
           phone,
-          birthDate,
         });
       }
     },
@@ -146,24 +137,6 @@ const Profile = () => {
                 onChange={formik.handleChange}
               />
             </div>
-          )}
-        </div>
-        <div className="flex items-center gap-0.5">
-          <h5 className="font-semibold min-w-[7rem]">Birth Date: </h5>
-          {isViewMode ? (
-            <span className="font-medium">
-              {birthDate ? new Date(birthDate).toLocaleDateString() : "N/A"}
-            </span>
-          ) : (
-            <DatePicker
-              dateFormat="dd/MM/yyyy"
-              placeholderText="Birth Date"
-              name="birthDate"
-              className="input input-sm input-bordered rounded w-full"
-              selected={formik.values.birthDate}
-              onChange={(date) => formik.setFieldValue("birthDate", date)}
-              closeOnScroll={true}
-            />
           )}
         </div>
         {!isViewMode ? (
