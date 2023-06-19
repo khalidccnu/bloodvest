@@ -39,7 +39,9 @@ const Overview = () => {
       </h5>
       <h5>
         <span className="font-semibold">Birth Date: </span>
-        <span className="font-medium">{birthDate || "N/A"}</span>
+        <span className="font-medium">
+          {new Date(birthDate).toLocaleDateString() || "N/A"}
+        </span>
       </h5>
       <h5>
         <span className="font-semibold">Blood Group: </span>

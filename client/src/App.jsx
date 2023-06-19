@@ -11,6 +11,7 @@ import Signup from "./pages/Signup.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import DashboardRoot from "./pages/DashboardRoot.jsx";
 import Overview from "./pages/Overview.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const App = () => {
             {
               path: "overview",
               element: <Overview />,
+            },
+            {
+              path: "profile",
+              element: <Profile />,
             },
           ],
         },

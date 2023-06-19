@@ -12,3 +12,11 @@
 .swiper-pagination-bullet-active {
     background-color: #0891b2;
 }
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.react-datepicker-popper {
+    z-index: 30;
+}

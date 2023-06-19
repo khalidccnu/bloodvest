@@ -63,6 +63,13 @@ const verifyJWT = (req, res, next) => {
       res.send(result);
     });
 
+    app.put("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
+      const query = { _id: req.params.identifier };
+      const result = await users.updateOne(query, { $set: req.body });
+
+      res.send(result);
+    });
+
     app.post("/users", async (req, res) => {
       const user = req.body;
       const query = { _id: user._id };

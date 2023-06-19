@@ -4,6 +4,7 @@ import useAxiosIns from "./useAxiosIns.js";
 
 const useUserInfo = () => {
   const [isUserInfoLoading, setUserInfoLoading] = useState(true);
+  const [isUserInfoRefetch, setUserInfoRefetch] = useState(false);
   const { user } = useAuth();
   const [userInfo, setUserInfo] = useState(null);
   const axiosIns = useAxiosIns();
@@ -14,13 +15,14 @@ const useUserInfo = () => {
         axiosIns.get(`/users/${user.uid}`).then((response) => {
           setUserInfo(response.data);
           setUserInfoLoading(false);
+          setUserInfoRefetch(false);
         });
       }
     },
-    [user]
+    [user, isUserInfoRefetch]
   );
 
-  return [isUserInfoLoading, userInfo];
+  return [isUserInfoLoading, userInfo, setUserInfoRefetch];
 };
 
 export default useUserInfo;
