@@ -17,6 +17,7 @@ const Dashboard = () => {
   const { logOut } = useAuth();
   const [, userInfo] = useUserInfo();
   const [hbMenu, setHbMenu] = useState(true);
+  const { firstName, photo } = userInfo ?? {};
 
   const handleLogout = (_) =>
     logOut()
@@ -42,7 +43,7 @@ const Dashboard = () => {
         <div
           className={`fixed md:static ${
             hbMenu ? "-left-96" : "left-0"
-          } top-0 w-72 md:w-auto h-full md:h-auto md:min-h-screen p-5 pt-28 md:-mt-28 md:-mb-10 bg-gray-50 z-10 transition-[left] duration-500`}
+          } top-0 w-72 md:w-auto h-full md:h-auto md:min-h-screen p-5 pt-28 md:-mt-28 md:-mb-10 bg-gray-50 overflow-y-auto md:overflow-y-visible scrollbar-hide md:scrollbar-default z-10 transition-[left] duration-500`}
         >
           <FaAngleLeft
             className="md:hidden text-2xl mb-5 cursor-pointer"
@@ -50,11 +51,9 @@ const Dashboard = () => {
           />
           <div className="md:sticky md:top-28">
             <figure className="w-20 h-20 rounded-full mx-auto overflow-hidden">
-              <img src={userInfo?.photo} alt="" />
+              <img src={photo} alt="" />
             </figure>
-            <h2 className="font-bold text-center mt-3">
-              {userInfo?.firstName}
-            </h2>
+            <h2 className="font-bold text-center mt-3">{firstName}</h2>
             <ul className="flex flex-col bg-gray-200 p-5 mt-5 rounded space-y-3">
               <li>
                 <NavLink
