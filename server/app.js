@@ -124,13 +124,19 @@ const verifyJWT = (req, res, next) => {
         let skip = 0,
           limit = 0;
 
-        if (req.query.page && req.query.limit) {
-          let page = req.query.page;
+        const query = { _id: { $ne: req.params.identifier } };
+
+        if (req.query.count) {
+          const countResult = await users.countDocuments(query);
+
+          return res.send({ total: countResult });
+        } else if (req.query.page && req.query.limit) {
+          let page = +req.query.page;
           limit = +req.query.limit;
-          skip = (page - 1) * limit;
+          skip = page * limit;
         }
 
-        const cursor = users.find().skip(skip).limit(limit);
+        const cursor = users.find(query).skip(skip).limit(limit);
         const result = await cursor.toArray();
 
         res.send(result);

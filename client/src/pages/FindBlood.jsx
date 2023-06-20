@@ -16,12 +16,11 @@ const FindBlood = () => {
   const [pageCount] = useState(Math.ceil(total / donorsPerPage));
   const [currentPage, setCurrentPage] = useState(page - 1 || 0);
 
-  const handlePageClick = (event) => {
-    let newPage = (event.selected * donorsPerPage) % total;
-    const url = queryString.stringify({ page: newPage + 1 });
+  const handlePageClick = ({ selected: page }) => {
+    const url = queryString.stringify({ page: page + 1 });
 
     navigate(location.pathname + "?" + url);
-    setCurrentPage(newPage);
+    setCurrentPage(page);
   };
 
   useEffect(
@@ -64,8 +63,8 @@ const FindBlood = () => {
                   nextLabel=">"
                   breakLabel="..."
                   pageCount={pageCount}
-                  pageRangeDisplayed="2"
-                  marginPagesDisplayed="2"
+                  pageRangeDisplayed={2}
+                  marginPagesDisplayed={2}
                   onPageChange={handlePageClick}
                   renderOnZeroPageCount={null}
                 />

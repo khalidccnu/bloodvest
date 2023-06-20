@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import queryString from "query-string";
+import ReactPaginate from "react-paginate";
 import toast from "react-hot-toast";
 import { Tooltip } from "react-tooltip";
 import useUserInfo from "../hooks/useUserInfo.js";
@@ -6,11 +9,24 @@ import useAxiosIns from "../hooks/useAxiosIns.js";
 import ManageUser from "../components/ManageUser.jsx";
 
 const ManageUsers = () => {
+  const location = useLocation();
+  let { page } = queryString.parse(location.search);
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
   const [isUserInfoLoading, userInfo] = useUserInfo();
   const axiosIns = useAxiosIns();
   const [users, setUsers] = useState([]);
+  const [usersPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(page - 1 || 0);
+  const [pageCount, setPageCount] = useState(0);
   const [isAction, setAction] = useState(false);
+
+  const handlePageClick = ({ selected: page }) => {
+    const url = queryString.stringify({ page: page + 1 });
+
+    navigate(location.pathname + "?" + url);
+    setCurrentPage(page);
+  };
 
   const handleAdmin = (id, name, isAdmin) => {
     axiosIns
@@ -28,17 +44,30 @@ const ManageUsers = () => {
   useEffect(
     (_) => {
       if (userInfo && userInfo.isAdmin) {
-        axiosIns.get(`/admin/${userInfo._id}/users`).then((response) => {
-          const filterUsers = response.data.filter(
-            (user) => user._id !== userInfo._id
+        axiosIns
+          .get(`/admin/${userInfo._id}/users?count=true`)
+          .then((response) =>
+            setPageCount(Math.ceil(response.data.total / usersPerPage))
           );
-
-          setUsers(filterUsers);
-          setLoading(false);
-        });
       }
     },
-    [userInfo, isAction]
+    [userInfo]
+  );
+
+  useEffect(
+    (_) => {
+      if (userInfo && userInfo.isAdmin) {
+        axiosIns
+          .get(
+            `/admin/${userInfo._id}/users?page=${currentPage}&limit=${usersPerPage}`
+          )
+          .then((response) => {
+            setUsers(response.data);
+            setLoading(false);
+          });
+      }
+    },
+    [userInfo, currentPage, isAction]
   );
 
   return !isUserInfoLoading ? (
@@ -54,6 +83,25 @@ const ManageUsers = () => {
                   user={user}
                 />
               ))}
+            </div>
+            <div className="flex justify-center mt-5">
+              <ReactPaginate
+                containerClassName="join"
+                pageLinkClassName="join-item btn btn-sm"
+                activeLinkClassName="btn-active"
+                disabledLinkClassName="btn-disabled"
+                previousLinkClassName="join-item btn btn-sm"
+                nextLinkClassName="join-item btn btn-sm"
+                breakLinkClassName="join-item btn btn-sm"
+                previousLabel="<"
+                nextLabel=">"
+                breakLabel="..."
+                pageCount={pageCount}
+                pageRangeDisplayed={2}
+                marginPagesDisplayed={2}
+                onPageChange={handlePageClick}
+                renderOnZeroPageCount={null}
+              />
             </div>
             <Tooltip anchorSelect=".title" />
           </>
