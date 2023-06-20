@@ -68,9 +68,50 @@ const verifyJWT = (req, res, next) => {
       next();
     };
 
-    app.get("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
-      const query = { _id: req.params.identifier };
-      const result = await users.findOne(query);
+    app.get(
+      "/self/users/:identifier",
+      verifyJWT,
+      verifySelf,
+      async (req, res) => {
+        const query = { _id: req.params.identifier };
+        const result = await users.findOne(query);
+
+        res.send(result);
+      }
+    );
+
+    app.get("/users/donors", async (req, res) => {
+      let skip = 0,
+        limit = 0;
+
+      const query = { donate: true };
+
+      const options = {
+        projection: {
+          firstName: 1,
+          lastName: 1,
+          phone: 1,
+          email: 1,
+          bGroup: 1,
+          division: 1,
+          district: 1,
+          postalCode: 1,
+          photo: 1,
+        },
+      };
+
+      if (req.query.count) {
+        const countResult = await users.countDocuments(query);
+
+        return res.send({ total: countResult });
+      } else if (req.query.page && req.query.limit) {
+        let page = +req.query.page;
+        limit = +req.query.limit;
+        skip = page * limit;
+      }
+
+      const cursor = users.find(query, options).skip(skip).limit(limit);
+      const result = await cursor.toArray();
 
       res.send(result);
     });
@@ -96,12 +137,17 @@ const verifyJWT = (req, res, next) => {
       }
     );
 
-    app.put("/users/:identifier", verifyJWT, verifySelf, async (req, res) => {
-      const query = { _id: req.params.identifier };
-      const result = await users.updateOne(query, { $set: req.body });
+    app.put(
+      "/self/users/:identifier",
+      verifyJWT,
+      verifySelf,
+      async (req, res) => {
+        const query = { _id: req.params.identifier };
+        const result = await users.updateOne(query, { $set: req.body });
 
-      res.send(result);
-    });
+        res.send(result);
+      }
+    );
 
     app.put(
       "/admin/:identifier/users/:id",

@@ -42,7 +42,7 @@ const Profile = () => {
       values.phone = "+880" + values.phone;
 
       axiosIns
-        .put(`/users/${id}`, values)
+        .put(`/self/users/${id}`, values)
         .then((_) => {
           toast.success("Data has been updated!");
           setUserInfoRefetch(true);

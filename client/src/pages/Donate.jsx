@@ -35,7 +35,7 @@ const Donate = () => {
       setLoading(true);
 
       axiosIns
-        .put(`/users/${id}`, values)
+        .put(`/self/users/${id}`, values)
         .then((_) => {
           toast.success("Data has been updated!");
           setUserInfoRefetch(true);

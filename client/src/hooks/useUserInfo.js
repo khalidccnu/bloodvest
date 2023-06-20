@@ -12,7 +12,7 @@ const useUserInfo = () => {
   useEffect(
     (_) => {
       if (user) {
-        axiosIns.get(`/users/${user.uid}`).then((response) => {
+        axiosIns.get(`/self/users/${user.uid}`).then((response) => {
           setUserInfo(response.data);
           setUserInfoLoading(false);
           setUserInfoRefetch(false);

@@ -10,7 +10,11 @@ const ManageUser = ({ handleAdmin, user }) => {
   return (
     <div className="card bg-gray-50">
       <figure className="px-10 pt-10">
-        <img src={photo} alt="" className="rounded-xl" />
+        {photo ? (
+          <img src={photo} alt="" className="rounded-xl" />
+        ) : (
+          <FaUser className="text-4xl rounded-xl" />
+        )}
       </figure>
       <div className="card-body items-center text-center">
         <h2 className="card-title text-lg">{firstName + " " + lastName}</h2>
