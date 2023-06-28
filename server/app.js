@@ -82,9 +82,14 @@ const verifyJWT = (req, res, next) => {
 
     app.get("/users/donors", async (req, res) => {
       let skip = 0,
-        limit = 0;
+        limit = 0,
+        query = {};
 
-      const query = { donate: true };
+      if (req.query.name)
+        query = { firstName: { $regex: req.query.name, $options: "i" } };
+      if (req.query.bg !== "All") query = { ...query, bGroup: req.query.bg };
+
+      query = { ...query, donate: true };
 
       const options = {
         projection: {

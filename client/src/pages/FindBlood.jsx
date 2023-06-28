@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import queryString from "query-string";
 import ReactPaginate from "react-paginate";
 import axios from "axios";
@@ -9,12 +10,18 @@ const FindBlood = () => {
   const location = useLocation();
   let { page } = queryString.parse(location.search);
   const navigate = useNavigate();
-  const { total } = useLoaderData();
   const [isLoading, setLoading] = useState(true);
   const [donors, setDonors] = useState([]);
   const [donorsPerPage] = useState(10);
-  const [pageCount] = useState(Math.ceil(total / donorsPerPage));
+  const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(page - 1 || 0);
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      bGroup: "All",
+    },
+  });
 
   const handlePageClick = ({ selected: page }) => {
     const url = queryString.stringify({ page: page + 1 });
@@ -27,21 +34,66 @@ const FindBlood = () => {
     (_) => {
       axios
         .get(
+          `${import.meta.env.VITE_API_URL}/users/donors?count=true&name=${
+            formik.values.name
+          }&bg=${encodeURIComponent(formik.values.bGroup)}`
+        )
+        .then((response) =>
+          setPageCount(Math.ceil(response.data.total / donorsPerPage))
+        );
+    },
+    [formik.values.name, formik.values.bGroup]
+  );
+
+  useEffect(
+    (_) => {
+      axios
+        .get(
           `${
             import.meta.env.VITE_API_URL
-          }/users/donors?page=${currentPage}&limit=${donorsPerPage}`
+          }/users/donors?page=${currentPage}&limit=${donorsPerPage}&name=${
+            formik.values.name
+          }&bg=${encodeURIComponent(formik.values.bGroup)}`
         )
         .then((response) => {
           setDonors(response.data);
           setLoading(false);
         });
     },
-    [currentPage]
+    [currentPage, formik.values.name, formik.values.bGroup]
   );
 
   return (
     <section className="pt-28 pb-10">
       <div className="container">
+        <div className="flex justify-between mb-8">
+          <input
+            type="text"
+            placeholder="Search By Name"
+            name="name"
+            className="input input-sm input-bordered rounded"
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
+          <select
+            name="bGroup"
+            className="select select-sm select-bordered rounded"
+            value={formik.values.bGroup}
+            onChange={formik.handleChange}
+          >
+            <option value="All" selected>
+              All
+            </option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
         {!isLoading ? (
           donors.length ? (
             <>

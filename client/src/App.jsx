@@ -1,7 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./providers/AuthProvider.jsx";
-import DonorsLoader from "./loaders/DonorsLoader.js";
 import LogOffRoute from "./routes/LogOffRoute.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
 import Root from "./Root.jsx";
@@ -32,7 +31,6 @@ const App = () => {
         {
           path: "/find-blood",
           element: <FindBlood />,
-          loader: DonorsLoader,
         },
         {
           path: "login",
