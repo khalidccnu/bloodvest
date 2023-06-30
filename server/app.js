@@ -87,7 +87,8 @@ const verifyJWT = (req, res, next) => {
 
       if (req.query.name)
         query = { firstName: { $regex: req.query.name, $options: "i" } };
-      if (req.query.bg !== "All") query = { ...query, bGroup: req.query.bg };
+      if (req.query.bg && req.query.bg !== "All")
+        query = { ...query, bGroup: req.query.bg };
 
       query = { ...query, donate: true };
 
