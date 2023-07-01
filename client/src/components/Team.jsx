@@ -12,48 +12,56 @@ const Team = () => {
           Te<span className="text-red-600 font-bold">a</span>m
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
-          <div className="bg-gray-50 rounded-2xl">
-            <div className="flex flex-col items-center py-10">
+          <div className="card bg-gray-50">
+            <figure className="px-10 pt-10">
               <img
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                 src={imgT1}
                 alt=""
               />
-              <h5 className="mb-1 text-xl font-medium">Tajul G.</h5>
-              <span className="text-sm text-gray-500">CEO</span>
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-lg">Tajul G.</h2>
+              <p className="text-gray-500">CEO</p>
             </div>
           </div>
-          <div className="bg-gray-50 rounded-2xl">
-            <div className="flex flex-col items-center py-10">
+          <div className="card bg-gray-50">
+            <figure className="px-10 pt-10">
               <img
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                 src={imgT2}
                 alt=""
               />
-              <h5 className="mb-1 text-xl font-medium">Rah. K.</h5>
-              <span className="text-sm text-gray-500">Manager</span>
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-lg">Rah. K.</h2>
+              <p className="text-gray-500">Manager</p>
             </div>
           </div>
-          <div className="bg-gray-50 rounded-2xl">
-            <div className="flex flex-col items-center py-10">
+          <div className="card bg-gray-50">
+            <figure className="px-10 pt-10">
               <img
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                 src={imgT3}
                 alt=""
               />
-              <h5 className="mb-1 text-xl font-medium">Arsalan</h5>
-              <span className="text-sm text-gray-500">Employer</span>
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-lg">Arsalan</h2>
+              <p className="text-gray-500">Employer</p>
             </div>
           </div>
-          <div className="bg-gray-50 rounded-2xl">
-            <div className="flex flex-col items-center py-10">
+          <div className="card bg-gray-50">
+            <figure className="px-10 pt-10">
               <img
                 className="w-24 h-24 mb-3 rounded-full shadow-lg"
                 src={imgT4}
                 alt=""
               />
-              <h5 className="mb-1 text-xl font-medium">Bonnie Green</h5>
-              <span className="text-sm text-gray-500">Employer</span>
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title text-lg">Bonnie Green</h2>
+              <p className="text-gray-500">Employer</p>
             </div>
           </div>
         </div>

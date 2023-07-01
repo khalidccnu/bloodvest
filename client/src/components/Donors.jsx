@@ -64,7 +64,14 @@ const Donors = () => {
               <span>There is no donor!</span>
             </div>
           )
-        ) : null}
+        ) : (
+          <div className="text-center">
+            <span
+              className="inline-block h-6 w-6 border-2 border-current border-r-transparent rounded-full animate-spin"
+              role="status"
+            ></span>
+          </div>
+        )}
       </div>
     </section>
   );
