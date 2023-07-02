@@ -85,8 +85,12 @@ const verifyJWT = (req, res, next) => {
         limit = 0,
         query = {};
 
+      if (req.query.id) query = { _id: req.query.id };
       if (req.query.name)
-        query = { firstName: { $regex: req.query.name, $options: "i" } };
+        query = {
+          ...query,
+          firstName: { $regex: req.query.name, $options: "i" },
+        };
       if (req.query.bg && req.query.bg !== "All")
         query = { ...query, bGroup: req.query.bg };
 
@@ -101,6 +105,7 @@ const verifyJWT = (req, res, next) => {
           bGroup: 1,
           division: 1,
           district: 1,
+          street: 1,
           postalCode: 1,
           photo: 1,
         },

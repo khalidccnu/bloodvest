@@ -26,7 +26,9 @@ const Login = () => {
       }
 
       signInWithEP(email, password)
-        .then((_) => navigate(fromURL || "/dashboard"))
+        .then((_) =>
+          navigate(fromURL + location.state?.fromURL.search || "/dashboard")
+        )
         .catch((err) => {
           setLoading(false);
 
@@ -40,7 +42,9 @@ const Login = () => {
 
   const handleLoginWithGoogle = (_) => {
     signInWithGoogle()
-      .then((_) => navigate(fromURL || "/dashboard"))
+      .then((_) =>
+        navigate(fromURL + location.state?.fromURL.search || "/dashboard")
+      )
       .catch((_) => setLoading(false));
   };
 
