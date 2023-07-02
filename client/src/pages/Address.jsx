@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useFormik } from "formik";
-import { FaCheckCircle, FaEdit } from "react-icons/fa";
+import { FaCheckCircle, FaEdit, FaUser, FaUsers } from "react-icons/fa";
 import axios from "axios";
 import useUserInfo from "../hooks/useUserInfo.js";
 import useAxiosIns from "../hooks/useAxiosIns.js";
@@ -9,6 +9,7 @@ import useAxiosIns from "../hooks/useAxiosIns.js";
 const Address = () => {
   const [isLoading, setLoading] = useState(false);
   const [isViewMode, setViewMode] = useState(true);
+  const [isOnlyMe, setOnlyMe] = useState(false);
   const axiosIns = useAxiosIns();
   const [, userInfo, setUserInfoRefetch] = useUserInfo();
   let { _id: id, division, district, street, postalCode } = userInfo ?? {};
@@ -59,6 +60,30 @@ const Address = () => {
     });
   };
 
+  const handleAddPrivacy = (_) => {
+    axiosIns
+      .put(`/self/users/${id}`, { addressPrivacy: true })
+      .then((_) => {
+        toast.success("Privacy has been updated!");
+        setOnlyMe(true);
+      })
+      .catch((_) => {
+        toast.error("Something went wrong!");
+      });
+  };
+
+  const handleRemovePrivacy = (_) => {
+    axiosIns
+      .put(`/self/users/${id}`, { addressPrivacy: false })
+      .then((_) => {
+        toast.success("Privacy has been updated!");
+        setOnlyMe(false);
+      })
+      .catch((_) => {
+        toast.error("Something went wrong!");
+      });
+  };
+
   useEffect((_) => {
     axios(`/divisions.json`).then((response) => setDivisions(response.data));
   }, []);
@@ -73,6 +98,8 @@ const Address = () => {
   useEffect(
     (_) => {
       if (userInfo) {
+        userInfo.addressPrivacy ? setOnlyMe(true) : null;
+
         formik.setValues({
           division,
           district,
@@ -86,7 +113,18 @@ const Address = () => {
 
   return (
     <div className="max-w-sm mx-auto">
-      <div className="mb-5 text-end">
+      <div className="mb-5 text-end space-x-1">
+        {isOnlyMe ? (
+          <FaUsers
+            className="inline-block hover:text-cyan-600 cursor-pointer"
+            onClick={handleRemovePrivacy}
+          />
+        ) : (
+          <FaUser
+            className="inline-block hover:text-cyan-600 cursor-pointer"
+            onClick={handleAddPrivacy}
+          />
+        )}
         {isViewMode ? (
           <FaEdit
             className="inline-block hover:text-cyan-600 cursor-pointer"

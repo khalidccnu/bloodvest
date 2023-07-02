@@ -24,6 +24,7 @@ const AuthProvider = ({ children }) => {
     return await axios.post(`${import.meta.env.VITE_API_URL}/users`, {
       _id: userId,
       ...values,
+      addressPrivacy: false,
       isAdmin: false,
     });
   };

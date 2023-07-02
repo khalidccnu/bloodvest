@@ -107,6 +107,7 @@ const verifyJWT = (req, res, next) => {
           district: 1,
           street: 1,
           postalCode: 1,
+          addressPrivacy: 1,
           photo: 1,
         },
       };

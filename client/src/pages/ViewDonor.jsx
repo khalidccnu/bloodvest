@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { FaLocationArrow, FaPhoneAlt, FaUser } from "react-icons/fa";
+import { FaLocationArrow, FaLock, FaPhoneAlt, FaUser } from "react-icons/fa";
 
 const ViewDonor = () => {
   const [params] = useSearchParams();
@@ -43,7 +43,15 @@ const ViewDonor = () => {
               <p className="flex items-center space-x-1">
                 <FaLocationArrow />
                 <span>
-                  {donor?.street}, {donor?.district}, {donor?.division}
+                  {donor?.addressPrivacy ? (
+                    <FaLock />
+                  ) : (
+                    donor?.street +
+                    ", " +
+                    donor?.district +
+                    ", " +
+                    donor?.division
+                  )}
                 </span>
               </p>
             </div>
