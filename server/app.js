@@ -8,7 +8,14 @@ const morgan = require("morgan");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -199,7 +206,7 @@ const verifyJWT = (req, res, next) => {
   } catch (err) {
     console.log("Did not connect to MongoDB! " + err.message);
   } finally {
-    await mdbClient.close();
+    // await mdbClient.close();
   }
 })();
 
