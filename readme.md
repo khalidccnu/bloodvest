@@ -9,5 +9,3 @@
 - Displayed donors by blood group so that blood seekers can easily get blood.
 - Donors can set the privacy of profile information as they wish.
 - Users can easily update their information as often as they want.
-
-###### [Live](https://bloodvest.netlify.app)
